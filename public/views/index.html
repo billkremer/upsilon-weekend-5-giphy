@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <script src="../vendors/angular.min.js" charset="utf-8"></script>
+    <script src="../vendors/angular-route.min.js" charset="utf-8"></script>
+    <script src="../scripts/client.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="../styles/styles.css">
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+    <base href="/" />
+    <title>Get Good Giphys</title>
+  </head>
+  <body>
+    <main ng-app='goodGiphyApp'>
+      <header>
+            <h1>Get Good Giphys</h1>
+
+            <nav>
+              <ul>
+                <li>
+                  <a href="/">Home</a>
+                </li>
+                <li>
+                  <a href="/favorites">Favorites</a>
+                </li>
+              </ul>
+            </nav>
+
+          </header>
+          <br />
+          <br />
+          <div id='pageContainer'>
+              <ng-view></ng-view>
+          </div>
+
+
+    </main>
+
+
+  </body>
+</html>
