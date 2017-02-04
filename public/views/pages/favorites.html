@@ -1,12 +1,32 @@
-<div id=#"favorites">
+<div id=#"favorites" ng-controller="FavoritesController as favGiphy">
   <h2>Third Route!!!!!!</h2>
 
   <!-- <div ng-repeat -->
 
 
-  <div class="favoritedGiphyDiv">
-    <img 
+<button ng-click="favGiphy.getFavoriteGiphys()">b</button>
+
+  <div class="favoritedGiphyDiv" ng-repeat="individualGiphy in favGiphy.giphyList">
+    <img ng-src="{{individualGiphy.imageUrl}}" alt=" image from giphy {{individualGiphy.imageAlt}}"/>
+    <textarea type="text" id="task" name="task" class="form-control" ng-model='favGiphy.comment' >asdf</textarea>
+    <!-- favgiphy or indiv -->
+
+    <button ng-click="favGiphy.updateGifComment(individualGiphy,
+
+
+    )"> Update Comment</button>
+    <!-- individual.comment? or is it an object? -->
+
+    <button ng-click="favGiphy.removeGif(individualGiphy)"> Remove Giphy </button>
+
   </div>
 
 
 </div>
+
+
+<!-- <ul>
+    <li ng-repeat="individualPokemon in pokemon.pokemonList">
+      <button ng-class="{active: individualPokemon.chosen}" ng-click="pokemon.iChooseYou(individualPokemon)"> {{individualPokemon.name}} </button>
+    </li>
+  </ul> -->
