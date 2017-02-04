@@ -10,4 +10,4 @@ This app is a redesign of the Giphy.com website.  Functionality includes:
 ###Publication Date: February 5, 2017
 
 
-should angular be deleted?
+- []should angular be deleted?
