@@ -1,0 +1,53 @@
+body {
+  background-color: aliceblue;
+  border: 1px solid black;
+  /*border-style: double;*/
+  border-radius: 5px;
+  padding: 5px 5px;
+  min-height: 700px;
+  text-align: center;
+}
+
+
+
+h1 {
+  text-shadow: 2px 2px 4px lightgrey;
+}
+
+nav ul {
+  list-style-type: none;
+
+
+}
+
+nav ul li {
+  float: left;
+  padding: 5px 5px;
+  border: 1px solid black;
+  border-radius: 3px;
+  margin: 5px 5px;
+  background-color: aliceblue;
+}
+
+#pageContainer {
+  clear: both;
+  border: 1px solid black;
+/*border-style: double;*/
+  border-radius: 5px;
+  padding: 5px 5px;
+  background-color: papayawhip;
+}
+
+.favoritedGiphyDiv {
+  border: 1px solid black;
+/*border-style: double;*/
+  border-radius: 5px;
+  padding: 5px 5px;
+  background-color: papayawhip;
+  min-height: 200px;
+  width: 200px;
+}
+
+.favoritedGiphyDiv img {
+  max-width: 98%;
+}
