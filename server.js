@@ -2,16 +2,17 @@ var express =  require('express');
 var app = express();
 var path = require('path');
 var bodyParser = require('body-parser');
-// var todos = require('./routes/todos');
+
+var giphydb = require('./routes/giphydb');
 
 app.use(bodyParser.json());
 // app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
-// app.use('/todos', todos); // pass through to the todos.js route
+ app.use('/favgifs', giphydb); // pass through to the todos.js route
 
 
-// serve the index page at /
+// send all requests to index.html
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'public', 'views', 'index.html'));
 });
