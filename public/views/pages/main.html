@@ -1,3 +1,30 @@
-<div id=main>
+<div id=main ng-controller="DefaultController as mainGiphy">
   <h2>main Route!!!!!!</h2>
+
+<div id='leftSide'>
+  <div id='displayGif'>
+
+  </div>
+  <div id="comment">
+
+  </div>
+  <div id='favoriteButton'>
+
+  </div>
+</div>
+
+
+  <div id="rightSide">
+    <h2>Get Another GIF!</h2>
+    <form class='searchForm'>
+      <input type='text' ng-model='giphy.searchTerm'  />
+      <button type='submit' ng-click='giphy.searchGif(giphy.searchTerm)'> Search </button>
+      <button id="randomButton" type="submit" ng-click="giphy.searchGif(' ')"> Send me a random GIF!</button>
+
+    </form>
+  </div>
+
+
+
+
 </div>
