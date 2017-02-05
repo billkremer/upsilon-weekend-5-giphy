@@ -13,7 +13,7 @@ This app is a redesign of the Giphy.com website.  Functionality includes:
 - [x] should angular be deleted?
 
 - [ ] set up main page
-- [ ] get random giphy
+- [ ] get random giphy - poppulate 'current' fields
 - [ ] get search giphy
 - [ ] whichever set to a current giphy
 - [ ] favorite this giphy =
