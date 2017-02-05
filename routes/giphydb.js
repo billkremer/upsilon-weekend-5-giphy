@@ -16,8 +16,35 @@ var bodyParser = require("body-parser");
 router.use(bodyParser.json());
 // router.use(bodyParser.urlencoded({extended: true}));
 
+router.post('/gifPOST', function(req, res) {
+// adding a new favorite giphy
+  console.log('giphy POST', req.body);
+
+  pool.connect(function(err, client, done) {
+    if (err) {
+      console.log("Error connecting to database", err);
+      res.sendStatus(500);
+      done(); // returns the connection
+    } else {
+      client.query( 'INSERT INTO giphy_favs (giphy_url, giphy_comment, giphy_alt) VALUES ($1, $2, $3);', [req.body.imageUrl, req.body.giphy_comment, req.body.imageAlt], function(err, result) {
+        done();
+        if (err) {
+          console.log("Error querying DB", err);
+          res.sendStatus(500);
+        } else {
+          if (verbose) console.log("Got put info from DB", result.rows);
+          res.send(result.rows);
+        };
+      });  // closes client query
+    }; // closes initial else
+  }); // closes pool.connection
+}); // closes POST
+
+
+
+
+
 router.put('/:id', function(req, res) {  // updating the favorited Gifs
-console.log('what09871234');
   console.log('giphydb PuT!', req.body, 'params', req.params);
 
   pool.connect(function(err, client, done) {
