@@ -1,14 +1,16 @@
-var verbose = false; // lets messages be turned off for non-error console.logs
+var verbose = true; // lets messages be turned off for non-error console.logs
+
+
 
 var app = angular.module('goodGiphyApp', ['ngRoute']);
 
 app.config(function($routeProvider, $locationProvider) {
   $routeProvider.when('/', {
     templateUrl: 'views/pages/main.html',
-    controller: 'DefaultController as defaultCtrl',
+    // controller: 'DefaultController as defaultCtrl', // declard on html
   }).when('/favorites', {
     templateUrl: 'views/pages/favorites.html',
-    controller: 'FavoritesController as favoritesCtrl'
+    // controller: 'FavoritesController as favoritesCtrl' // declared on html, dont need here
   })  // .when takes two parameters: 1 route as a string, 2 object literal with options.
 
   $locationProvider.html5Mode(true);
@@ -16,27 +18,69 @@ app.config(function($routeProvider, $locationProvider) {
 
 app.controller('DefaultController', function (GiphyService) {
   if (verbose) console.log('DefaultController is loaded!');
+
+var defCtrl = this;
+
+defCtrl.getRandomGif = function (searchTerm) {
+  if (searchTerm == undefined) { searchTerm = ' ';}
+console.log('dinside gify', searchTerm);
+    GiphyService.getRandomGif(searchTerm).then(function(response) {
+    //   defCtrl.pokemonList = response.data.results;
+    console.log('got a random response!', response);
+    console.log('response',response.image_url);
+    defCtrl.imageUrl = response.image_url;
+    defCtrl.imageAlt = response.url;
+  }); // closes then.
+
+};// closes getRandomGif
+
+defCtrl.getRandomGif("robot dancing");
+
 }); // closes DefaultController
 
-app.controller('FavoritesController', ['GiphyService', function (GiphyService) {
+app.controller('FavoritesController', function (GiphyService) {
   if (verbose) console.log('FavoritesController is loaded...');
 
-  var ctrl = this;
+  var favCtrl = this;
 
-  var giphyList = []; // array of favorites objects
+  favCtrl.giphyList = []; // array of favorites objects
 
 // TODO // get the list of favorites?
 
-  ctrl.getFavoriteGiphys = function () {
+
+
+  favCtrl.getFavoriteGiphys = function () {
   if (verbose) console.log('inside client.js getFavs');
   GiphyService.getFavoriteGiphys().then(function (res) {
 if (verbose)   console.log('inside client.js favGif res: ', res); // should be all favorite gifs?
-    // do something else? a message to the dom?
+
+  favCtrl.giphyList = res;
+
+    // do something else? a message to the dom?s
   }); // close then.
 }; // closes getFavGif
-  //
-  //
-  // ctrl.removeGif = function (gifToRemove) {
+
+favCtrl.getFavoriteGiphys();
+
+favCtrl.updateFavoriteComment = function (giphyToUpdate ) {
+    event.preventDefault();
+  if (verbose) console.log('inside client.js update', giphyToUpdate);
+  GiphyService.updateFavoriteComment(giphyToUpdate).then(function (res) {
+if (verbose) console.log('inside client.js update res: ', res); // should be all favorite gifs?
+// favCtrl.giphyList = res;
+
+// favCtrl.getFavoriteGiphys();
+
+  // do something else? a message to the dom?s
+}); // close then.
+
+  // favCtrl.getFavoriteGiphys(); // to update the favorite?
+
+}; // closes updateFavoriteComment
+
+
+
+  // favCtrl.removeGif = function (gifToRemove) {
   // if (verbose)   console.log('inside client.js removeGif', gifToRemove);
   //   GiphyService.removeGif(gifToRemove).then(function (res) {
   // if (verbose)   console.log('inside client.js removeGif res: ', res);
@@ -46,4 +90,4 @@ if (verbose)   console.log('inside client.js favGif res: ', res); // should be a
 
 
 
-}]); // closes FavoritesController
+}); // closes FavoritesController
