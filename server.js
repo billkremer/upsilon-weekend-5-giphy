@@ -15,7 +15,6 @@ app.use('/favgifs', giphydb); // pass through to the giphydb.js route
 
 // app.use(('/getGifs', giphyAPI)); // pass through to the giphyAPI
 
-
 // send all other requests to index.html
 app.get('/*', function (req, res) {
   res.sendFile(path.join(__dirname, 'public', 'views', 'index.html'));
