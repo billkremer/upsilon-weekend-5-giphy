@@ -4,16 +4,12 @@ var path = require('path');
 var bodyParser = require('body-parser');
 
 var giphydb = require('./routes/giphydb');
-// var giphyAPI = require('./routes/giphyAPI');
-
 
 app.use(bodyParser.json());
 // app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
 app.use('/favgifs', giphydb); // pass through to the giphydb.js route
-
-// app.use(('/getGifs', giphyAPI)); // pass through to the giphyAPI
 
 // send all other requests to index.html
 app.get('/*', function (req, res) {
