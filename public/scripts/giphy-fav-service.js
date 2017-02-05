@@ -1,4 +1,4 @@
-var verbose = false; // lets messages be turned off for non-error console.logs
+var verbose = true; // lets messages be turned off for non-error console.logs
 
 // var pg = require("pg");
 // var config = { database: "upsilon_giphy_favs" };
@@ -10,75 +10,63 @@ app.service('GiphyService', function ($http) {
 
   console.log('got to service!');
 
-  var publicAPIkey = 'dc6zaTOxFJmzC';
-  var giphyURL = '//api.giphy.com/v1/gifs/random'
+  var apiUrl = '//api.giphy.com/v1/gifs/random'; // random also lets the user have a searchterm, using 'tag'
+
+  var giphyGetParams = { params: {api_key: 'dc6zaTOxFJmzC', limit: '1'} };
+
+
+  this.getRandomGif = function (searchTerm) {
+    giphyGetParams.params.tag = searchTerm;
+    console.log('tag', giphyGetParams.params.tag);
+      return $http.get(apiUrl , giphyGetParams).then(function(response) {
+      //   defCtrl.pokemonList = response.data.results;
+     console.log('got a random response!', response);
+    //  console.log(response.data.data.image_url);
+      return response.data.data;
+  //    defCtrl.imageAlt = response.data.data.url;
+    }).catch(function(err) {
+      console.log('error getting random data from API :', err);
+    });
+  }; // close get random
+
+
 
 
 
   this.getFavoriteGiphys = function () {
     // return the promise to the caller
-    console.log('got a bit further...');
+
     return $http({
-      url: '/favgifs',
+      url: '/favgifs/getfavs',
       type: 'GET'
     }).then(function(response) {
       //   ctrl.pokemonList = response.data.results;
 console.log('any response?',response.data);
-      // pool.connect(function(err, client, done) {
-      //   if (err) {
-      //     console.log("Error connecting to database", err);
-      //     res.sendStatus(500);
-      //     done(); // returns the connection
-      //   } else {
-      //     client.query( "SELECT * FROM giphy_favs;", function(err, result) {
-      //       done();
-      //       if (err) {
-      //         console.log("Error querying DB", err);
-      //         res.sendStatus(500);
-      //       } else {
-      //         if (verbose) console.log("Got info from DB", result.rows);
-      //         return (result.rows);
-      //       };
-      //     });  // closes client query
-      //   }; // closes initial else
-      // }); // closes pool.connection
 
-
-    //  console.log('got a random response!', response);
-    // //  console.log(response.data.data.image_url);
-    //   return response.data.data;
-  //    ctrl.imageAlt = response.data.data.url;
-  return response;
+  return response.data;
 
     }).catch(function(err) {
       console.log('error getting random data from API :', err);
     });
-
-
-
-    // pool.connect(function(err, client, done) {
-    //   if (err) {
-    //     console.log("Error connecting to database", err);
-    //     res.sendStatus(500);
-    //     done(); // returns the connection
-    //   } else {
-    //     client.query( "SELECT * FROM giphy_favs WHERE task_completed IS NULL ORDER BY task_due ASC", function(err, result) {
-    //       done();
-    //       if (err) {
-    //         console.log("Error querying DB", err);
-    //         res.sendStatus(500);
-    //       } else {
-    //         if (verbose) console.log("Got info from DB", result.rows);
-    //         res.send(result.rows);
-    //       };
-    //     });  // closes client query
-    //   }; // closes initial else
-    // }); // closes pool.connection
-
-
   }; // closes getFavoriteGiphys
 
 
+
+  this.updateFavoriteComment = function (giphyToUpdate) {
+      // console.log('got a bit further... id: ', giphyToUpdate.id, giphyToUpdate, '/favgifs/'+ giphyToUpdate.id);
+      // var dataObjToSend = {temp: giphyToUpdate}
+
+      return $http.put('/favgifs/'+ giphyToUpdate.id, giphyToUpdate ).then(function(response) {
+        //   ctrl.pokemonList = response.data.results;
+  console.log('any response from update?', response);
+
+    return response.config.data;
+
+      }).catch(function(err) {
+        console.log('error getting random data from API :', err);
+      });
+
+  }; // closes updateFavoriteComment
 
 
 
