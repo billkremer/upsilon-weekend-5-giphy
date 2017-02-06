@@ -4,15 +4,16 @@
 
 <div id='leftSide'>
   <div id='displayGif'>
-    <img ng-src="{{mainGiphy.imageUrl}}" alt=" image from giphy {{mainGiphy.imageAlt}}"/>
+    <img ng-src="{{mainGiphy.imageUrl}}" alt=" image from giphy {{mainGiphy.imageAlt}}"
+    />
 
 
   </div>
   <div id="comment">
-  <textarea type="text" id="task" name="task" class="form-control" ng-model='individualGiphy.giphy_comment' >{{individualGiphy.giphy_comment}}</textarea>
+  <textarea type="text" id="task" name="task" class="form-control" ng-model='mainGiphy.giphy_comment' >{{mainGiphy.giphy_comment}}</textarea>
   </div>
   <div id='favoriteButton'>
-<button type="submit" ng-click='mainGiphy.favoriteThisGif()'>Favorite This GiF</button>
+<button type="submit" ng-click='mainGiphy.favoriteThisGif(mainGiphy.imageUrl, mainGiphy.imageAlt)'>Favorite This GiF</button>
   </div>
 </div>
 
