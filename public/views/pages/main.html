@@ -16,7 +16,7 @@
 
     <div id='favoriteButton'>
 
-      <button type="submit" ng-click='mainGiphy.favoriteThisGif(mainGiphy.imageUrl, mainGiphy.imageAlt)' ng-disabled="{{mainGiphy.favButtonBool}}">{{mainGiphy.favButtonTxt}}</button>
+      <button type="submit" ng-click='mainGiphy.favoriteThisGif(mainGiphy.imageUrl, mainGiphy.imageAlt)' ng-disabled={{mainGiphy.favButtonBool}}>{{mainGiphy.favButtonTxt}}</button>
     </div>
   </div>
 
@@ -30,6 +30,9 @@
         <br />
       <button id="randomButton" type="submit" ng-click="mainGiphy.getRandomGif(' ')"> Send me a random GIF!</button>
     </form>
+    <p>
+      Please be patient as some giphys may take a while to load.
+    </p>
   </div>
 
 </div>
