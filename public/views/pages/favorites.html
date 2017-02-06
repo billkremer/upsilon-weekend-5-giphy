@@ -1,30 +1,16 @@
 <div id="favorites" ng-controller="FavoritesController as favGiphy">
 
-  <h2>Third Route!!!!!!</h2>
+  <h2>Favorite Giphys!!!!!!</h2>
 
-  <!-- <div ng-repeat -->
-
-
-<button ng-click="favGiphy.getFavoriteGiphys()">b</button>
-
+  <!-- ng-repeat block: -->
   <div class="favoritedGiphyDiv" ng-repeat="individualGiphy in favGiphy.giphyList">
     <img ng-src="{{individualGiphy.giphy_url}}" alt=" image from giphy {{individualGiphy.giphy_url}}"/>
-    <textarea type="text" id="task" name="task" class="form-control" ng-model='individualGiphy.giphy_comment' >{{individualGiphy.giphy_comment}}</textarea>
-    <!-- favgiphy or indiv -->
+    <textarea type="text" id="task" name="task" class="form-control" ng-model='individualGiphy.giphy_comment' > {{individualGiphy.giphy_comment}} </textarea>
 
-    <button ng-click="favGiphy.updateFavoriteComment(individualGiphy)"> Update Comment</button>
-    <!-- individual.comment? or is it an object? -->
+    <button ng-click="favGiphy.updateFavoriteComment(individualGiphy)"> Update Comment </button>
 
     <button ng-click="favGiphy.removeGif(individualGiphy)"> Remove Giphy </button>
 
   </div>
 
-
 </div>
-
-
-<!-- <ul>
-    <li ng-repeat="individualPokemon in pokemon.pokemonList">
-      <button ng-class="{active: individualPokemon.chosen}" ng-click="pokemon.iChooseYou(individualPokemon)"> {{individualPokemon.name}} </button>
-    </li>
-  </ul> -->
