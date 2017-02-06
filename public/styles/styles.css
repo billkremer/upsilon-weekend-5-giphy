@@ -36,6 +36,7 @@ nav ul li {
   border-radius: 5px;
   padding: 5px 5px;
   background-color: papayawhip;
+  height: 100%;
 }
 
 .favoritedGiphyDiv {
@@ -46,8 +47,35 @@ nav ul li {
   background-color: papayawhip;
   min-height: 200px;
   width: 200px;
+  float: left;
+  margin: 5px 5px;
 }
 
 .favoritedGiphyDiv img {
   max-width: 98%;
+}
+
+textarea {
+  resize:vertical;
+  width: 95%;
+}
+
+#mainsection {
+  text-align: center;
+  margin: 5px auto;
+  border: 1px solid black;
+  /*overflow: visible;
+  height: 100%;*/
+}
+
+#leftSide, #rightSide {
+  margin: 5px auto;
+  padding: 5px 5px;
+  float: left;
+  width: 48%;
+  /*border: 1px solid black;*/
+}
+
+#displayGif img {
+  max-width: 100%;
 }
