@@ -1,20 +1,18 @@
-var verbose = true; // lets messages be turned off for non-error console.logs
+var verbose = false; // lets messages be turned off for non-error console.logs
 
 var express = require("express");
 var router = express.Router();
-
 
 var pg = require("pg");
 
 var config = { database: "upsilon_giphy_favs" };
 
-// initialize connection Pool
-// think of as 'how I connect to DB'
 var pool = new pg.Pool(config);
 
 var bodyParser = require("body-parser");
 router.use(bodyParser.json());
-// router.use(bodyParser.urlencoded({extended: true}));
+
+
 
 router.post('/gifPOST', function(req, res) {
 // adding a new favorite giphy
@@ -67,10 +65,8 @@ router.delete('/:id', function(req, res) {  // updating the favorited Gifs
 
 
 
-
-
 router.put('/:id', function(req, res) {  // updating the favorited Gifs
-  console.log('giphydb PuT!', req.body, 'params', req.params);
+  if (verbose) console.log('giphydb PuT!', req.body, 'params', req.params);
 
   pool.connect(function(err, client, done) {
     if (err) {
@@ -93,9 +89,10 @@ router.put('/:id', function(req, res) {  // updating the favorited Gifs
 }); // closes POST
 
 
-router.get("/", function(req, res) {  // getting the favorited Gifs
 
+router.get("/", function(req, res) {  // getting the favorited Gifs
   if (verbose) console.log('giphydb get!');
+
   pool.connect(function(err, client, done) {
     if (err) {
       console.log("Error connecting to database", err);
@@ -108,7 +105,7 @@ router.get("/", function(req, res) {  // getting the favorited Gifs
           console.log("Error querying DB", err);
           res.sendStatus(500);
         } else {
-    //      if (verbose) console.log("Got get info from DB", result.rows);
+         if (verbose) console.log("Got get info from DB", result.rows);
           res.send(result.rows);
         };
       });  // closes client query

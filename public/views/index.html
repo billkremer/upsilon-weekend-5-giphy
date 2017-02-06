@@ -14,31 +14,31 @@
     <title>Get Good Giphys</title>
   </head>
   <body>
+
     <main ng-app='goodGiphyApp'>
       <header>
-            <h1>Get Good Giphys</h1>
+        <h1>Get Good Giphys</h1>
 
-            <nav>
-              <ul>
-                <li>
-                  <a href="/">Home</a>
-                </li>
-                <li>
-                  <a href="/favorites">Favorites</a>
-                </li>
-              </ul>
-            </nav>
+        <nav>
+          <ul>
+            <li>
+              <a href="/">Home</a>
+            </li>
+            <li>
+              <a href="/favorites">Favorites</a>
+            </li>
+          </ul>
+        </nav>
 
-          </header>
-          <br />
-          <br />
-          <div id='pageContainer'>
-              <ng-view></ng-view>
-          </div>
+      </header>
 
+      <br />
+      <br />
+
+      <div id='pageContainer'>
+        <ng-view></ng-view>
+      </div>
 
     </main>
-
-
   </body>
 </html>

@@ -1,24 +1,24 @@
-<div id=mainsection ng-controller="DefaultController as mainGiphy">
+<div id="mainsection" ng-controller="DefaultController as mainGiphy">
 
   <h2>Checkout more Giphys!</h2>
   <p>There are {{mainGiphy.giphyCount}} Favorites</p>
-<div id='leftSide'>
-  <div id='displayGif'>
-    <img ng-src="{{mainGiphy.imageUrl}}" alt=" image from giphy {{mainGiphy.imageAlt}}"
-    />
 
 
+  <div id='leftSide'>
+    <div id='displayGif'>
+      <img ng-src="{{mainGiphy.imageUrl}}" alt=" image from giphy {{mainGiphy.imageAlt}}" />
+
+    </div>
+
+    <div id="comment">
+      <textarea placeholder="Comment Here..." type="text" id="task" name="task" class="form-control" ng-model='mainGiphy.giphy_comment' >{{mainGiphy.giphy_comment}}</textarea>
+    </div>
+
+    <div id='favoriteButton'>
+
+      <button type="submit" ng-click='mainGiphy.favoriteThisGif(mainGiphy.imageUrl, mainGiphy.imageAlt)' ng-disabled="{{mainGiphy.favButtonBool}}">{{mainGiphy.favButtonTxt}}</button>
+    </div>
   </div>
-  <div id="comment">
-  <textarea placeholder="Comment Here..." type="text" id="task" name="task" class="form-control" ng-model='mainGiphy.giphy_comment' >{{mainGiphy.giphy_comment}}</textarea>
-  </div>
-  <div id='favoriteButton'>
-
-<button type="submit" ng-click='mainGiphy.favoriteThisGif(mainGiphy.imageUrl, mainGiphy.imageAlt)' ng-disabled="{{mainGiphy.favButtonBool}}">{{mainGiphy.favButtonTxt}}</button>
-  </div>
-
-</div>
-
 
 
   <div id="rightSide">
@@ -26,13 +26,10 @@
     <form class='searchForm'>
       <input type='text' ng-model='mainGiphy.searchTerm'  />
       <button type='submit' ng-click='mainGiphy.getRandomGif(mainGiphy.searchTerm)'> Search </button>
-          <br />  <br /> 
+        <br />
+        <br />
       <button id="randomButton" type="submit" ng-click="mainGiphy.getRandomGif(' ')"> Send me a random GIF!</button>
-
     </form>
   </div>
-
-
-
 
 </div>
