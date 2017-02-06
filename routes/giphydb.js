@@ -18,7 +18,7 @@ router.use(bodyParser.json());
 
 router.post('/gifPOST', function(req, res) {
 // adding a new favorite giphy
-  console.log('giphy POST', req.body);
+  if (verbose) console.log('giphy POST', req.body);
 
   pool.connect(function(err, client, done) {
     if (err) {
@@ -34,6 +34,31 @@ router.post('/gifPOST', function(req, res) {
         } else {
           if (verbose) console.log("Got put info from DB", result.rows);
           res.send(result.rows);
+        };
+      });  // closes client query
+    }; // closes initial else
+  }); // closes pool.connection
+}); // closes POST
+
+
+
+router.delete('/:id', function(req, res) {  // updating the favorited Gifs
+  if (verbose) console.log('giphydb delete!', req.body, 'params', req.params); // you don't send data to a delete!!!
+
+  pool.connect(function(err, client, done) {
+    if (err) {
+      console.log("Error connecting to database", err);
+      res.sendStatus(500);
+      done(); // returns the connection
+    } else {
+      client.query( 'DELETE FROM giphy_favs WHERE id = $1;', [req.params.id], function(err, result) {
+        done();
+        if (err) {
+          console.log("Error querying DB", err);
+          res.sendStatus(500);
+        } else {
+          if (verbose) console.log("Got delete info from DB");
+          res.sendStatus(204);
         };
       });  // closes client query
     }; // closes initial else
@@ -68,9 +93,9 @@ router.put('/:id', function(req, res) {  // updating the favorited Gifs
 }); // closes POST
 
 
-router.get("/getfavs", function(req, res) {  // getting the favorited Gifs
+router.get("/", function(req, res) {  // getting the favorited Gifs
 
-  console.log('giphydb get!');
+  if (verbose) console.log('giphydb get!');
   pool.connect(function(err, client, done) {
     if (err) {
       console.log("Error connecting to database", err);
@@ -83,7 +108,7 @@ router.get("/getfavs", function(req, res) {  // getting the favorited Gifs
           console.log("Error querying DB", err);
           res.sendStatus(500);
         } else {
-          if (verbose) console.log("Got get info from DB", result.rows);
+    //      if (verbose) console.log("Got get info from DB", result.rows);
           res.send(result.rows);
         };
       });  // closes client query
