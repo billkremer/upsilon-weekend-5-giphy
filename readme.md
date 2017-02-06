@@ -19,4 +19,4 @@ To start, type ```npm start``` in the terminal.
 
 Start a PostgreSQL database server, and create a database using the query commands inside the ```database.sql``` file.
 
-Navigate to http://localhost:3000
+Navigate to [http://localhost:3000](http://localhost:3000/).
