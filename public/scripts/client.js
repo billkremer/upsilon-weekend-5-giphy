@@ -24,7 +24,7 @@ app.controller('DefaultController', function (GiphyService) {
 
 
   defCtrl.getRandomGif = function (searchTerm) {
-    if (searchTerm == undefined) { searchTerm = ' ';};
+    if (searchTerm == undefined) { searchTerm = '';};
     if (verbose) console.log('inside getRandGif', searchTerm);
 
     GiphyService.getRandomGif(searchTerm).then(function(response) {
@@ -37,7 +37,7 @@ app.controller('DefaultController', function (GiphyService) {
     }); // closes then.
   };// closes getRandomGif
 
-  defCtrl.getRandomGif(" "); // puts the first gif on the page
+  defCtrl.getRandomGif(""); // puts the first gif on the page
   // doesn't affect search or random button.
 
   if (verbose) console.log(defCtrl);
