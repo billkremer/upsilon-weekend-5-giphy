@@ -1,14 +1,11 @@
 body {
   background-color: aliceblue;
   border: 1px solid black;
-  /*border-style: double;*/
   border-radius: 5px;
   padding: 5px 5px;
   min-height: 700px;
   text-align: center;
 }
-
-
 
 h1 {
   text-shadow: 2px 2px 4px lightgrey;
@@ -16,8 +13,6 @@ h1 {
 
 nav ul {
   list-style-type: none;
-
-
 }
 
 nav ul li {
@@ -32,7 +27,6 @@ nav ul li {
 #pageContainer {
   clear: both;
   border: 1px solid black;
-/*border-style: double;*/
   border-radius: 5px;
   padding: 5px 5px;
   background-color: papayawhip;
@@ -41,7 +35,6 @@ nav ul li {
 
 .favoritedGiphyDiv {
   border: 1px solid black;
-/*border-style: double;*/
   border-radius: 5px;
   padding: 5px 5px;
   background-color: papayawhip;

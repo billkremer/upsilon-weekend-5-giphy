@@ -1,4 +1,4 @@
-var verbose = true; // lets messages be turned off for non-error console.logs
+var verbose = false; // lets messages be turned off for non-error console.logs
 
 var app = angular.module('goodGiphyApp', ['ngRoute']);
 
@@ -16,46 +16,48 @@ app.config(function($routeProvider, $locationProvider) {
 }); // closes app.config
 
 
+
 app.controller('DefaultController', function (GiphyService) {
   if (verbose) console.log('DefaultController is loaded!');
 
   var defCtrl = this;
+
 
   defCtrl.getRandomGif = function (searchTerm) {
     if (searchTerm == undefined) { searchTerm = ' ';};
     if (verbose) console.log('inside getRandGif', searchTerm);
 
     GiphyService.getRandomGif(searchTerm).then(function(response) {
-    //   defCtrl.pokemonList = response.data.results;
+
     if (verbose) console.log('got a random response!', response);
     defCtrl.imageUrl = response.image_url;
     defCtrl.imageAlt = response.url;
     defCtrl.favButtonTxt = "Favorite this GIF";
     defCtrl.favButtonBool = false;
-  }); // closes then.
-};// closes getRandomGif
+    }); // closes then.
+  };// closes getRandomGif
 
-defCtrl.getRandomGif(" "); // puts the first gif on the page
-// doesn't affect search or random button.
+  defCtrl.getRandomGif(" "); // puts the first gif on the page
+  // doesn't affect search or random button.
+
+  if (verbose) console.log(defCtrl);
 
 
-console.log(defCtrl);
-
-defCtrl.getFavoriteGiphys = function () {
-  if (verbose) console.log('inside client.js getFavs');
-  GiphyService.getFavoriteGiphys().then(function (res) {
+  defCtrl.getFavoriteGiphys = function () {
+    if (verbose) console.log('inside client.js getFavs');
+    GiphyService.getFavoriteGiphys().then(function (res) {
     if (verbose) console.log('inside client.js favGif res: ', res); // should be all favorite gifs?
 
     defCtrl.giphyCount = res.length;
     if (verbose) console.log('length', defCtrl.giphyCount);
 
-  }); // close then.
-}; // closes getFavGif
+    }); // close then.
+  }; // closes getFavGif
 
-defCtrl.getFavoriteGiphys(); // gets the count of giphys
+  defCtrl.getFavoriteGiphys(); // gets the count of giphys
 
 
-defCtrl.favoriteThisGif = function (giphyToFav) {
+  defCtrl.favoriteThisGif = function (giphyToFav) {
     giphyToFav = defCtrl;
     if (verbose) console.log('giphyToFav', giphyToFav);
 
@@ -66,13 +68,14 @@ defCtrl.favoriteThisGif = function (giphyToFav) {
     defCtrl.getFavoriteGiphys();
     defCtrl.favButtonBool = true;
 
-  }); // closes then
-}; // closes favoriteThisGif
+    }); // closes then
+  }; // closes favoriteThisGif
 
 
 }); // closes DefaultController
 
 // xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
 
 app.controller('FavoritesController', function (GiphyService) {
   if (verbose) console.log('FavoritesController is loaded...');
@@ -88,40 +91,36 @@ app.controller('FavoritesController', function (GiphyService) {
       if (verbose) console.log('inside client.js favGif res: ', res); // should be all favorite gifs?
 
       favCtrl.giphyList = res;
-console.log('length',favCtrl.giphyList.length);
+      if (verbose) console.log('length',favCtrl.giphyList.length);
       favCtrl.giphyCount = res.length
     }); // close then.
   }; // closes getFavGif
 
-favCtrl.getFavoriteGiphys();
 
-favCtrl.updateFavoriteComment = function (giphyToUpdate ) {
-  event.preventDefault();
-  if (verbose) console.log('inside client.js update', giphyToUpdate);
-  GiphyService.updateFavoriteComment(giphyToUpdate).then(function (res) {
-    if (verbose) console.log('inside client.js update res: ', res); // should be all favorite gifs?
+  favCtrl.getFavoriteGiphys();
 
-    }); // close then.
 
-  // favCtrl.getFavoriteGiphys(); // to update the favorite?
+  favCtrl.updateFavoriteComment = function (giphyToUpdate ) {
+    event.preventDefault();
+    if (verbose) console.log('inside client.js update', giphyToUpdate);
+    GiphyService.updateFavoriteComment(giphyToUpdate).then(function (res) {
+      if (verbose) console.log('inside client.js update res: ', res); // should be all favorite gifs?
 
-}; // closes updateFavoriteComment
+      }); // close then.
+
+
+  }; // closes updateFavoriteComment
+
 
   favCtrl.removeGif = function (gifToRemove) {
-  event.preventDefault();
+    event.preventDefault();
 
     if (verbose)   console.log('inside client.js removeGif', gifToRemove);
 
     GiphyService.removeGif(gifToRemove).then(favCtrl.getFavoriteGiphys);
-    // .then(function (res) {
-    //  favCtrl.getFavoriteGiphys();
-    //    if (verbose) console.log('inside client.js removeGif res: ');
-  // });
 
-    // .then(function () {
     if (verbose) console.log('inside client.js removeGif res: ');
 
-    // }); // close then.
   }; // closes removeGif
 
 
