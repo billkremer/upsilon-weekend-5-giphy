@@ -62,11 +62,20 @@ textarea {
 
 #mainsection {
   text-align: center;
+  margin: 5px auto;
+  border: 1px solid black;
+  /*overflow: visible;
+  height: 100%;*/
 }
 
 #leftSide, #rightSide {
-  margin: 5px 5px;
+  margin: 5px auto;
   padding: 5px 5px;
   float: left;
   max-width: 40%
+
+}
+
+#displayGif img {
+  max-width: 100%;
 }
