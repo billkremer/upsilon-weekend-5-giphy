@@ -72,8 +72,8 @@ textarea {
   margin: 5px auto;
   padding: 5px 5px;
   float: left;
-  max-width: 40%
-
+  width: 48%;
+  /*border: 1px solid black;*/
 }
 
 #displayGif img {
