@@ -1,33 +1,22 @@
 #Weekend 5 Project
 ##Giphy Redesign
 
-This app is a redesign of the Giphy.com website.  Functionality includes:
+This app is a redesign of the Giphy.com website, using the Giphy.com API.  Functionality includes:
 * saving giphys to a Favorites page.
 * adding comments to favorited giphys.
 * deleting giphys from the Favorites page.
 
 ###Author: Bill Kremer
-###Publication Date: February 5, 2017
+###Publication Date: February 6, 2017
 
+###Technology Used:
 
-- [x] should angular be deleted?
+Giphy.com API (https://api.giphy.com), JavaScript, Express, Angular, PostgreSQL, Node, Git, HTML, CSS
 
-- [ ] set up main page
-- [ ] get random giphy - poppulate 'current' fields
-- [ ] get search giphy
-- [ ] whichever set to a current giphy
-- [ ] favorite this giphy =
-- [ ] save url and comment to db
-- [ ] switch button to "saved"!
-- [ ] pull count of favorites. length of array
-- [ ] bootstrap 6 + 6
-- [ ]
-- [ ]
+Please use ```npm install``` to install the framework in the terminal.
 
-- [ ] create pages
-- [ ] create routing to pages
-- [ ] create get requests to giphy
-- [ ] store request response in an array
-- [ ] send response array to postgres database
-- [ ] setup postgres database
-- [ ] create routing to database
+To start, type ```npm start``` in the terminal.
+
+Start a PostgreSQL database server, and create a database using the query commands inside the ```database.sql``` file.
+
+Navigate to http://localhost:3000
