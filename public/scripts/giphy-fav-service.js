@@ -8,7 +8,7 @@ var verbose = true; // lets messages be turned off for non-error console.logs
 
 app.service('GiphyService', function ($http) {
 
-  console.log('got to service!');
+  if (verbose) console.log('got to service!');
 
   var apiUrl = '//api.giphy.com/v1/gifs/random'; // random also lets the user have a searchterm, using 'tag'
 
@@ -17,36 +17,50 @@ app.service('GiphyService', function ($http) {
 
   this.getRandomGif = function (searchTerm) {
     giphyGetParams.params.tag = searchTerm;
-    console.log('tag', giphyGetParams.params.tag);
+    if (verbose) console.log('tag', giphyGetParams.params.tag);
       return $http.get(apiUrl , giphyGetParams).then(function(response) {
       //   defCtrl.pokemonList = response.data.results;
-     console.log('got a random response!', response);
+     if (verbose) console.log('got a random response!', response);
     //  console.log(response.data.data.image_url);
       return response.data.data;
-  //    defCtrl.imageAlt = response.data.data.url;
+      // ...imageAlt = response.data.data.url;
     }).catch(function(err) {
       console.log('error getting random data from API :', err);
     });
   }; // close get random
 
 
+  this.favoriteThisGif = function (giphyToFav) {
+    if (verbose) console.log('giphyToFav-service', giphyToFav);
+    // return the promise to the caller
+    return $http.post('/favgifs/gifPOST', giphyToFav ).then(function(response) {
+      //   ctrl.pokemonList = response.data.results;
+if (verbose) console.log('any response?',response);
+
+  return response;
+
+    }).catch(function(err) {
+      console.log('error getting response from favthisgif :', err);
+    });
+  }; // closes getFavoriteGiphys
+
 
 
 
   this.getFavoriteGiphys = function () {
-    // return the promise to the caller
 
+    // return the promise to the caller
     return $http({
       url: '/favgifs/getfavs',
       type: 'GET'
     }).then(function(response) {
       //   ctrl.pokemonList = response.data.results;
-console.log('any response?',response.data);
+if (verbose) console.log('any response?',response.data);
 
   return response.data;
 
     }).catch(function(err) {
-      console.log('error getting random data from API :', err);
+      console.log('error getting response  :', err);
     });
   }; // closes getFavoriteGiphys
 
@@ -58,7 +72,7 @@ console.log('any response?',response.data);
 
       return $http.put('/favgifs/'+ giphyToUpdate.id, giphyToUpdate ).then(function(response) {
         //   ctrl.pokemonList = response.data.results;
-  console.log('any response from update?', response);
+  if (verbose) console.log('any response from update?', response);
 
     return response.config.data;
 
