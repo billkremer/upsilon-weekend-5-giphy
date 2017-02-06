@@ -1,0 +1,21 @@
+- [x] should angular be deleted?
+
+- [x] set up main page
+- [x] get random giphy - poppulate 'current' fields
+- [x] get search giphy
+- [x] whichever set to a current giphy
+- [x] favorite this giphy =
+- [x] save url and comment to db
+- [x] switch button to "saved"!
+- [x] pull count of favorites. length of array
+- [ ] bootstrap 6 + 6
+- [ ]
+- [ ]
+
+- [x] create pages
+- [x] create routing to pages
+- [x] create get requests to giphy
+- [x] store request response in an array
+- [x] send response array to postgres database
+- [x] setup postgres database
+- [x] create routing to database
