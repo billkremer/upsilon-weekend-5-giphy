@@ -14,7 +14,7 @@ This app is a redesign of the Giphy.com website, using the Giphy.com API.  Funct
 Giphy.com API (https://api.giphy.com), JavaScript, Express, Angular, PostgreSQL, Node, Git, HTML, CSS
 
 
-####To view the app on Heroku, please navigate to https://infinite-savannah-90330.herokuapp.com/ .
+###To view the app on Heroku, please navigate to https://infinite-savannah-90330.herokuapp.com/ .
 Please checkout the herokuBranch branch to see the changes
 
 
