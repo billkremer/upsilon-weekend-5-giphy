@@ -3,7 +3,7 @@
   <h2>{{favGiphy.giphyCount}} Favorited Giphys!!!!!!</h2>
 
   <!-- ng-repeat block: -->
-  <div class="favoritedGiphyDiv clearfix" ng-repeat="individualGiphy in favGiphy.giphyList">
+  <div class="favoritedGiphyDiv" ng-repeat="individualGiphy in favGiphy.giphyList">
     <img ng-src="{{individualGiphy.giphy_url}}" alt=" image from giphy {{individualGiphy.giphy_url}}"/>
     <textarea  placeholder="Comment Here..." type="text" id="task" name="task" class="form-control" ng-model='individualGiphy.giphy_comment' > {{individualGiphy.giphy_comment}} </textarea>
 
