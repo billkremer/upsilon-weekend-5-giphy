@@ -34,6 +34,8 @@ app.controller('DefaultController', function (GiphyService) {
     defCtrl.imageAlt = response.url;
     defCtrl.favButtonTxt = "Favorite this GIF";
     defCtrl.favButtonBool = false;
+    defCtrl.giphy_comment = "";
+
     }); // closes then.
   };// closes getRandomGif
 
@@ -67,7 +69,6 @@ app.controller('DefaultController', function (GiphyService) {
     defCtrl.favButtonTxt = "Favorited!";
     defCtrl.getFavoriteGiphys();
     defCtrl.favButtonBool = true;
-    defCtrl.giphy_comment = "";
 
     }); // closes then
   }; // closes favoriteThisGif
